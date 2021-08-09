@@ -1,0 +1,10 @@
+ .nav-bar-item-custom, .nav-bar-item-custom a {
+     color: white;
+ }
+ .footer-custom{
+     text-align: center;
+     position: fixed;
+     width: 100%;
+     bottom: 0;
+     background-color: #dfeaff;
+ }
