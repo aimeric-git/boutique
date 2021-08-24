@@ -33,7 +33,6 @@ class ProductController extends AbstractController
         {
             // $search = $form->getData();
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search); 
-
         }else
         {
             $products = $this->entityManager->getRepository(Product::class)->findAll();
@@ -44,7 +43,7 @@ class ProductController extends AbstractController
         ]);
     }
 
-      /**
+    /**
      * @Route("/product/{slug}", name="product")
      */
     public function show($slug): Response
