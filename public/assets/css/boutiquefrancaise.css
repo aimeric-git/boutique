@@ -33,3 +33,8 @@ body{
 .product-container {
     margin-bottom: 15px;
 }
+
+.cart-icon{
+    height: 18px;
+    padding-left: 20px;
+}
