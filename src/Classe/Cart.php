@@ -29,7 +29,7 @@ class Cart
             $cart[$id] = 1;
         }
 
-        $this->session->set('cart', $cart);
+        return $this->session->set('cart', $cart);
     }
 
     public function get()
