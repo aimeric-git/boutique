@@ -82,7 +82,7 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/account/delete-address/{id}", name="account_address_delete")
      */
-    public function delete(Request $request, $id): Response
+    public function delete($id): Response
     {
         $address = $this->entityManager->getRepository(Address::class)->findOneById($id);
         if($address || $this->getUser() == $address->getUser())
