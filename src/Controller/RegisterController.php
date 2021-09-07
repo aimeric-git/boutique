@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,21 +26,42 @@ class RegisterController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
+        $notification = null;
+
         $user = new User(); 
         $form = $this->createForm(RegisterType::class, $user);
 
         $form->handleRequest($request);
+        
         if($form->isSubmitted() && $form->isValid())
         { 
-            //hash the password with encodePassword
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            $user = $form->getData();
 
-            $this->entityManager->persist($user);
-            $this->entityManager->flush(); 
+            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+
+            if (!$search_email)
+            {
+                //hash the password with encodePassword
+                $password = $encoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+
+                $this->entityManager->persist($user);
+                $this->entityManager->flush(); 
+
+                $mail = new Mail();
+                $content = "Bonjour ".$user->getFirstname()."<br/>Bienvenue sur la boutique";
+                $mail->send($user->getEmail(), $user->getFirstname(), 'Bienvenue sur la boutique française', $content);
+                $notification = "Inscription réussie";
+            }
+            else
+            {
+                $notification = "Email existe déjà";
+            }
+            
         }
         return $this->render('register/index.html.twig', [
-            'monFormulaire' => $form->createView()
+            'monFormulaire' => $form->createView(), 
+            'notification' => $notification
         ]);
     }
 }
