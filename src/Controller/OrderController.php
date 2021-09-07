@@ -7,6 +7,8 @@ use App\Entity\Order;
 use App\Entity\OrderDetails;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -102,4 +104,5 @@ class OrderController extends AbstractController
 
         return $this->redirectToRoute('cart');
     }
+
 }

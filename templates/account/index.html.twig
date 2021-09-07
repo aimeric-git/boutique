@@ -5,7 +5,8 @@
 {% block content %}
     <h1>Mon compte</h1>
     Bonjour {{ app.user.firstname }} <br>
-    Bienvenue dans votre espace membre. 
-    <a href=" {{ path('account_password') }} ">Modifier mon mot de passe</a>
-    <a href=" {{ path('account_address') }} ">Gérer mes adresses</a>
+    Bienvenue dans votre espace membre. <br>
+    <a href=" {{ path('account_password') }} ">Modifier mon mot de passe</a> <br>
+    <a href=" {{ path('account_address') }} ">Gérer mes adresses</a> <br>
+    <a href=" {{ path('account_order') }} ">Mes commandes</a>
 {% endblock %}
