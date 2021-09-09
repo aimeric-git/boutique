@@ -3,6 +3,10 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
+    {% if notification %}
+        {{ notification }}
+    {% endif %}
+    
     <h1 class="text-center text-muted">Inscription</h1>
 
     {{ form(monFormulaire) }}
