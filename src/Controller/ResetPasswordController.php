@@ -16,10 +16,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class ResetPasswordController extends AbstractController
 {
     private $entityManager;
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager; 
     }
+    
     /**
      * @Route("/mot-de-passe-oublie", name="reset_password")
      */
